@@ -18,10 +18,10 @@ class RegisterUserController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'id_number' => 'required',
+            'id_number' => 'required|unique:customers,id_number',
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', Password::min(1),'confirmed'] /// password_confirmation
+            'email' => 'required|email|unique:customers,email',
+            'password' => ['required', Password::min(1), 'confirmed'],
         ]);
         $user = User::create($attributes);
         

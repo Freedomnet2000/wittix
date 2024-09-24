@@ -34,7 +34,7 @@ class CustomerController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:3'],
             'phone' => ['required'],
-            'email' => ['required'],
+            'email' => ['required', 'email', 'unique:customers,email'],
             'birthdate' => ['required'],
         ]);
 
@@ -53,7 +53,7 @@ class CustomerController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:3'],
             'phone' => ['required'],
-            'email' => ['required'],
+            'email' => ['required', 'email', 'unique:customers,email'],
             'birthdate' => ['required'],
         ]);
 
