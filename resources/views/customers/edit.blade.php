@@ -1,20 +1,18 @@
 <x-layout>
     <x-slot:heading>
-        Edit Customer {{ $Customer->name}}
+        Edit Customer {{ $customer->name}} /// Todo !!
     </x-slot:heading>
         <form method="POST" action="/customers/{{ $customer->id }}">
         @csrf
         @method('PATCH')
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Updaet a  Customer</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
-
+         
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <x-form-filed>
                         <x-form-label for="title">Name</x-form-label>
 
-                        <x-form-input name="name" id="name" required />
+                        <x-form-input name="name" id="name" value="{{ $customer->name }}" required />
 
                         <x-form-error name="name" />
                     </x-form-filed>
@@ -22,7 +20,7 @@
                     <x-form-filed>
                         <x-form-label for="phone">Phone</x-form-label>
 
-                        <x-form-input name="phone" id="phone" required />
+                        <x-form-input name="phone" id="phone" value="{{ $customer->phone }}" required />
 
                         <x-form-error name="phone" />
                     </x-form-filed>
@@ -30,7 +28,7 @@
                     <x-form-filed>
                         <x-form-label for="email">Email</x-form-label>
 
-                        <x-form-input name="email" id="email" required />
+                        <x-form-input name="email" id="email" value="{{ $customer->email }}" required />
 
                         <x-form-error name="email" />
                     </x-form-filed>
@@ -38,7 +36,7 @@
                     <x-form-filed>
                         <x-form-label for="birthdate">Birthdate</x-form-label>
 
-                        <x-form-input name="birthdate" id="birthdate" required />
+                        <x-form-input name="birthdate" id="birthdate" value="{{ $customer->birthdate }}" required />
 
                         <x-form-error name="birthdate" />
                     </x-form-filed>

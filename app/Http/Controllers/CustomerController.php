@@ -13,8 +13,12 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customers.index', ['customers' => Customer::with(('user'))->latest()->paginate(10)]);
-    }
+        return view('customers.index', [
+            'customers' => Customer::where('user_id', Auth::id()) 
+                ->latest()
+                ->paginate(10)
+        ]); 
+     }
 
     public function create()
     {
@@ -41,20 +45,20 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
 
-        return view('customer.edit', ['customer' => $customer]);
+        return view('customers.edit', ['customer' => $customer]);
     }
 
     public function update(Customer $customer)
     {
-        request()->validate([
-            'title' => ['required', 'min:3'],
-            'salary' => ['required'],
-        ]); 
-        $customer->update([
-            'title' => request('title'),
-            'salary' => request('salary'),
+        $attributes = request()->validate([
+            'name' => ['required', 'min:3'],
+            'phone' => ['required'],
+            'email' => ['required'],
+            'birthdate' => ['required'],
         ]);
-        return redirect('/customer/' . $customer->id);
+
+        $customer->update($attributes);
+        return redirect('/customers/' . $customer->id);
     }
 
     public function destroy(Customer $customer)
